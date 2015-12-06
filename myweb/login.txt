@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>提示</title>
+<link rel="stylesheet" href="http://www.nowamagic.net/librarys/application/views/admin/msgbox.css" />
+<script type="text/javascript" src="http://www.nowamagic.net/librarys/application/views/admin/msgbox.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+runtips();
+setTimeout("jump()", 2000);
+
+function runtips(){
+	var tip = "请注册后再进入个人中心";
+	var i = 1;
+
+	ZENG.msgbox.show(tip, i, 2000);
+}
+
+function jump()
+{
+	window.location = "http://www.nowamagic.net/librarys/admin/../accounts/register/";
+}
+</script>
+</body>
