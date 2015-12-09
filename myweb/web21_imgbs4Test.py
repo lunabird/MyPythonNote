@@ -47,6 +47,7 @@ class imgTest:
 		for item in imgTags:
 			imgURLs.append(item.get('src'))
 		print imgURLs
+		self.printToLog(','.join(imgURLs))
 		return imgURLs
 	#save a single img 
 	def saveImg(self,imageURL,filename):
@@ -68,7 +69,7 @@ class imgTest:
 			number += 1
 
 
-baseURL = 'http://tieba.baidu.com/p/3925387672'
+baseURL = 'http://tieba.baidu.com/p/3760562085'
 imgtest = imgTest(baseURL,1)
 totalnum = int(imgtest.getPageNum())
 
