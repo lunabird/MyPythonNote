@@ -1,0 +1,115 @@
+# -*- coding:utf-8 -*-
+
+
+from bs4 import BeautifulSoup
+import urllib2
+import urllib
+import re
+
+# class imgTest:
+
+# 	def __init__(self, baseUrl, seeLZ):
+# 		self.baseUrl = baseUrl
+# 		self.seeLZ = '?see_lz='+str(seeLZ)
+
+# 	#print to log.txt
+# 	def printToLog(self,mystr):
+# 		f = open('txt/log.txt', 'a')
+# 		f.write(mystr+"\n")
+# 		f.close()
+# 	#get the html source code
+# 	def getPage(self, pageNum):
+# 		try:
+# 			url = self.baseUrl+self.seeLZ +'&pn='+str(pageNum)
+# 			request = urllib2.Request(url)
+# 			response = urllib2.urlopen(request)
+# 			content = response.read()
+# 			return content
+# 		except urllib2.URLError, e:
+# 			if hasattr(e, "reason"):
+# 				print "failed to connect baidutieba.",e.reason
+# 				return None
+
+# 	def getPageNum(self):
+# 		page = self.getPage(1)
+# 		soup = BeautifulSoup(page,'html.parser')
+# 		pageNum = soup.find_all("span",class_='red')[1].string
+# 		return pageNum
+
+# 	def getTitle(self):
+# 		page = self.getPage(1)
+# 		soup = BeautifulSoup(page,'html.parser')
+# 		return soup.h3.string
+
+# 	def getAllImageURLs(self,pageNum):
+# 		page = self.getPage(pageNum)	
+# 		soup = BeautifulSoup(page,'html.parser')	
+# 		imgTags = soup.find_all("img",class_="BDE_Image")
+# 		imgURLs = []
+# 		for item in imgTags:
+# 			imgURLs.append(item.get('src'))
+# 		print imgURLs
+# 		self.printToLog(','.join(imgURLs))
+# 		return imgURLs
+# 	#save a single img 
+# 	def saveImg(self,imageURL,filename):
+# 		u = urllib.urlopen(imageURL)
+# 		data = u.read()
+# 		f = open(filename,'wb')
+# 		f.write(data)
+# 		f.close()
+# 	#download images
+# 	def saveImgs(self, images, name, num):
+# 		number = num
+# 		for imageURL in images:
+# 			splitPath = imageURL.split('.')
+# 			fTail = splitPath.pop()
+# 			if len(fTail)>3:
+# 				fTail = "jpg"
+# 			fileName = name+"/"+str(number)+"."+fTail
+# 			self.saveImg(imageURL,fileName)
+# 			number += 1
+
+
+#save a single img 
+def saveImg(imageURL,filename):
+	u = urllib.urlopen(imageURL)
+	data = u.read()
+	f = open(filename,'wb')
+	f.write(data)
+	f.close()
+#download images
+def saveImgs(images, name, num):
+	number = num
+	for imageURL in images:
+		splitPath = imageURL.split('.')
+		fTail = splitPath.pop()
+		if len(fTail)>3:
+			fTail = "jpg"
+		fileName = name+"/"+str(number)+"."+fTail
+		self.saveImg(imageURL,fileName)
+		number += 1
+
+
+
+# baseURL = 'http://tieba.baidu.com/p/3760562085'
+# imgtest = imgTest(baseURL,1)
+totalnum = 11
+imageURLs = []
+
+for i in range(1,totalnum+1):
+	# imageURLs.append("http://bizhi.manmankan.com/view.shtml?path=http://86bizhi.manmankan.com/bizhipic/201509/6745/"+str(i)+"_1920x1080.jpg")
+	saveImg("http://bizhi.manmankan.com/view.shtml?path=http://86bizhi.manmankan.com/bizhipic/201509/6745/"+str(i)+"_1920x1080.jpg","pic/"+str(i)+".jpg")
+# print imageURLs
+
+# imageCount = 0
+# for i in range(1, totalnum+1):
+# 	# imageURLs = imgtest.getAllImageURLs(i)
+# 	imgtest.saveImgs(imageURLs,"pic",imageCount)
+# 	imageCount += len(imageURLs)
+# 	print imageCount
+
+
+# http://bizhi.manmankan.com/view.shtml?path=http://86bizhi.manmankan.com/bizhipic/201509/6745/2_1920x1080.jpg
+# http://bizhi.manmankan.com/view.shtml?path=http://86bizhi.manmankan.com/bizhipic/201509/6745/1_1920x1080.jpg
+# http://bizhi.manmankan.com/view.shtml?path=http://86bizhi.manmankan.com/bizhipic/201509/6745/11_1920x1080.jpg
